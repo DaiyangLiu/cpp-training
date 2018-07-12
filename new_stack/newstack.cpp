@@ -48,9 +48,10 @@ Item NewStack::topitem() const
 	{
 		return items[top - 1];
 	}
+	return NULL;
 }
 
 NewStack::~NewStack()
 {
-	top == 0;
+	top = 0;
 }
