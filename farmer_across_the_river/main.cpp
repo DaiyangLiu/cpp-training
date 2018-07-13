@@ -1,3 +1,4 @@
+//failed
 #include <stdio.h>
 #include <stack>
 #include <string>
@@ -23,27 +24,39 @@ int main()
 	
 	CurStatus temp;
 
-	temp = root;//将root的初始状态赋给temp
 
-	//int status_count = 0;
+	//int step=0;
+
 	while (!s.empty())
 	{
-		temp.ChangeStatus(s.top().status_num);
-		if (temp.CheckStatus())
+		temp = s.top();
+		temp.status_num = 0;
+		//B状态的 status_num = 1
+		//temp.ChangeStatus(s.top().status_num);
+		temp.ChangeStatus( s.top().status_num);
+		
+		if (temp.CheckStatus())//状态有效
 		{
-
-			s.push(temp);
-		}
-		else
-		{		
-			if (s.top().status_num < 7)
+			s.push(temp);		
+			if (s.top().CheckSuccess())
 			{
-				s.top().status_num++;
+				cout << "ok" << endl;
 			}
-			else
+		}
+		else//状态无效
+		{
+			s.top().status_num++;
+			while(s.top().status_num > 7 )
 			{
 				s.pop();
-				s.top().status_num++;
+				if (!s.empty())
+				{	
+					s.top().status_num++;					
+				}
+				else
+				{
+					break;
+				}
 			}
 		}
 	}
@@ -51,3 +64,4 @@ int main()
 	system("pause");
 	return 0; 
 }
+
