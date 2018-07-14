@@ -9,9 +9,9 @@ void cross_river(){
 	for(i=0; i<ALL_STATE; i++){
 		record[i] = 0;
 	}
-	printf("start\n");
+	LOG(LOG_INFO, "search start");
 	take_boat();
-	printf("end\n");
+	LOG(LOG_INFO, "search end");
 	stack_destroy(stack);
 }
 
