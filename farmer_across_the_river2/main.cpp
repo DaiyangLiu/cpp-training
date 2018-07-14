@@ -18,15 +18,11 @@ int main()
 	CurStatus temp;
 	
 	s.push(root);
-
+	status_record.push_back(root);
 	while (!s.empty())
 	{
 		temp = s.top().ChangeStatus(s.top().status_num);
-		//for (int i = 0; i < 4; i++)
-		//{
-		//	cout << temp.status[i] << " ";
-		//}
-		//cout << endl;
+;
 		//状态重复处理
 		int is_repeat = 0;
 		vector<CurStatus>::iterator it;
@@ -41,7 +37,7 @@ int main()
 		//状态合法判断
 		if (temp.CheckStatus() && !is_repeat)
 		{			
-			cout << "状态合法" << endl;
+			//cout << "状态合法" << endl;
 			status_record.push_back(temp);
 			s.push(temp);
 
@@ -58,7 +54,38 @@ int main()
 					s2.pop();
 					cout << endl;
 				}
+				
 				cout << "----------OK-----------" << endl;
+				cout << endl << endl;
+				s.pop();
+				status_record.pop_back();
+
+				s.top().status_num++;
+				while (s.top().status_num > 7)
+				{
+					s.pop();
+					status_record.pop_back();
+					if (!s.empty())
+					{
+						s.top().status_num++;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+				//vector<CurStatus>::iterator it;
+				//for (it = status_record.begin(); it != status_record.end(); it++)
+				//{
+				//	for (int i = 0; i < 4; i++)
+				//	{
+				//		cout << it->status[i] << " ";
+				//	}
+				//	cout << endl;
+				//}
+
+				//status_record.
 				//status_record.clear();
 				//break;
 			}
@@ -69,6 +96,7 @@ int main()
 			while (s.top().status_num > 7)
 			{
 				s.pop();
+				status_record.pop_back();
 				if (!s.empty())
 				{
 					s.top().status_num++;
